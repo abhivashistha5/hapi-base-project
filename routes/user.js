@@ -13,7 +13,7 @@ const login = {
     return { status: 200, message: 'SUCCESS', data: { token: userData.token } };
   },
   config: {
-    tags: ['api', 'admin'],
+    tags: ['api', 'user'],
     validate: {
       payload: {
         username: Joi.string().required(),
@@ -30,7 +30,27 @@ const login = {
   }
 }
 
+const logout = {
+  method: 'POST',
+  path: '/user/logout',
+  handler: async (request) => {
+    return { status: 200, message: 'SUCCESS', data: {} };
+  },
+  config: {
+    tags: ['api', 'user'],
+    validate: {
+      failAction: commonFunc.failActionFunction,
+    },
+    plugins: {
+      'hapi-swagger': {
+        payloadType: 'form',
+        responseMessages: config.swaggerDefaultResponseMessages,
+      }
+    }
+  }
+}
 
 module.exports = [
-  login
+  login,
+  logout
 ]

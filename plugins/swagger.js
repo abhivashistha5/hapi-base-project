@@ -3,14 +3,17 @@ const inert = require('inert');
 const vision = require('vision');
 
 const options = {
-  pathPrefixSize: 2
+  info: {
+    title: 'Test API Documentation',
+  },
+  grouping: 'tags',
 }
 
 module.exports = [
   inert,
   vision,
   {
-  plugin: hapiSwagger,
-  options, 
+    plugin: hapiSwagger,
+    options,
   }
 ];
