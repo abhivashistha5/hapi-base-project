@@ -3,5 +3,4 @@ const logger = require('tracer').colorConsole({
   dateformat : "isoUtcDateTime"
 });
 
-logger.log('test');
 module.exports = logger;

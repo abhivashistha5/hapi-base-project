@@ -2,6 +2,7 @@ const Hapi = require('@hapi/hapi');
 
 const config = require('./conf/appConfig');
 const Bootstrap = require('./utils/bootstrap');
+const logging = require('./utils/logger');
 
 const init = async () => {
   const server = Hapi.server({
@@ -12,11 +13,11 @@ const init = async () => {
   await Bootstrap.init(server);
 
   await server.start();
-  console.log('Server running on %s', server.info.uri);
+  logging.info('Server running on %s', server.info.uri);
 };
 
 process.on('unhandledRejection', (err) => {
-  console.error(err);
+  logging.error(err);
   process.exit(1);
 });
 

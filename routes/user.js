@@ -2,6 +2,7 @@ const Joi = require('@hapi/joi');
 const userController = require('../controllers/userController');
 const commonFunc = require('../utils/commonFunctions');
 const logger = require('../utils/logger');
+const config = require('../conf/appConfig');
 
 const login = {
   method: 'POST',
@@ -12,6 +13,7 @@ const login = {
     return { status: 200, message: 'SUCCESS', data: { token: userData.token } };
   },
   config: {
+    tags: ['api', 'admin'],
     validate: {
       payload: {
         username: Joi.string().required(),
@@ -19,6 +21,12 @@ const login = {
       },
       failAction: commonFunc.failActionFunction,
     },
+    plugins: {
+      'hapi-swagger': {
+        payloadType: 'form',
+        responseMessages: config.swaggerDefaultResponseMessages,
+      }
+    }
   }
 }
 
