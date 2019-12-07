@@ -1,3 +1,4 @@
+require('dotenv').config()
 const Hapi = require('@hapi/hapi');
 
 const config = require('./conf/appConfig');

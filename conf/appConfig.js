@@ -1,6 +1,6 @@
 const conf = {
   port: 8000,
-  host: 'localhost',
+  host: '0.0.0.0',
   swaggerDefaultResponseMessages: [
     { code: 200, message: 'OK' },
     { code: 201, message: 'CREATED' },
